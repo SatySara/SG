@@ -1,0 +1,65 @@
+Lecture Theatre (B-A)
+Lecture Theatre (F-B)
+Lecture Theatre (MH-A-B)
+Lecture Theatre (MH-B)
+Lecture Theatre (MH-C)
+Lecture Theatre (Monckton-B)
+Lecture Theatre (Monckton-F)
+Lecture Theatre (Monckton-MH)
+Lecture Theatre (LTF-J1.7)
+Lecture Theatre (Monckton-J1.1)
+
+
+
+WITH PorterLocations AS (SELECT     Id AS LocationId
+                                                         FROM         rdowner.V_LOCATION
+                                                         WHERE     (Name IN ('H2.1 Meeting', 'H2.2 Meeting', 'H2.3 Meeting', 'H2.4 Meeting', 'H2.5 Board', 'H2.6 Board', 'H2.7 Board', 'H2.8 Board', 
+                                                                               'H2 Board 6+7+8', 'H2 Board 6+7', 'H2 Board 7+8', 'H2 Meeting 1+2', 'H2 Meeting 3+4', 'H1.9 Computing', 'H1.8 Computing', 
+                                                                               'H1.8+1.9 Computing', 'JB.3 Teaching', 'JB.5 Teaching', 'JB.3+5 Teaching', 'JB.7 Teaching', 'JB.9 Teaching', 'JB.7+9 Teaching', 
+                                                                               'JB.11 Teaching', 'JB.12 Teaching', 'JB.11+12 Teaching', 'JB.13 Teaching', 'JB.14 Teaching', 'JB.13+14 Teaching', 'Lecture Theatre (B-A)', 'Lecture Theatres (F-B)', 'Lecture Theatres (MH-A-B)', 'Lecture Theatres (MH-B)', 'Lecture Theatres (MH-C)', 'Lecture Theatres (Monckton-B)', 'Lecture Theatres (Monckton-F)', 'Lecture Theatres (Monckton-MHLT)', 'LTF-J1.7', 'Monckton Lecture Theatre-J1.1,)))
+    SELECT     CAST(A.Name AS char(255)) AS name, CASE WHEN A.[description] = '' THEN LEFT(A.name, 32) ELSE LEFT(A.[description], 32) END AS description, DATEDIFF(minute, 
+                            D.StartDateTime, D.EndDateTime) / 15 AS no_periods, D.StartDateTime AS start_date_time, CAST(DATEDIFF(minute, D.StartDateTime, D.EndDateTime) 
+                            / 60.0 AS decimal(5, 2)) AS Duration_in_hours, CAST(L.Name AS char(255)) AS location_name, CAST(A.ActualSize AS char(10)) AS no_attendees, 
+                            CAST(A.UserText5 AS char(100)) AS Style, CAST(A.SectionId AS varchar(255)) AS section_id
+     FROM         PorterLocations AS P INNER JOIN
+                            rdowner.V_ACTIVITY_LOCATION AS X ON P.LocationId = X.LocationId INNER JOIN
+                            rdowner.V_ACTIVITY_DATETIME AS D ON X.ActivityId = D.ActivityID INNER JOIN
+                            rdowner.V_ACTIVITY AS A ON X.ActivityId = A.Id INNER JOIN
+                            rdowner.V_LOCATION AS L ON X.LocationId = L.Id
+
+
+
+
+SELECT TOP 1000 [name]
+      ,[description]
+      ,[no_periods]
+      ,[start_date_time]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+contactlesstfl@tfl.gov.uk 10793851
+
+Terry Turner <tturner@sgul.ac.uk>
+      ,[Duration_in_hours]
+      ,[location_name]
+      ,[no_attendees]
+      ,[Style]
+      ,[section_id]
+  FROM [RDB1718].[rdowner].[SGUL_PortersReport] where (location_name IN( 'H2.5 Board', 'H2.6 Board', 'H2.7 Board', 'H2.8 Board', 'H2 Board 6+7+8', 'H2 Board 6+7', 'H2 Board 7+8'))
+
+Invoice No.: 140370
+
+
+Wang Fengying
